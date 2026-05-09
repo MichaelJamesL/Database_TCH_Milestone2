@@ -11,12 +11,13 @@ CREATE TABLE IF NOT EXISTS dokter_hewan (
 );
 
 CREATE TABLE IF NOT EXISTS tindakan_perawatan (
-    waktu DATETIME PRIMARY KEY,
+    waktu DATETIME,
     deskripsi TEXT,
     biaya DECIMAL(11, 2) NOT NULL,
     no_catatan INT NOT NULL,
     id_dokter INT NOT NULL,
     FOREIGN KEY (no_catatan) REFERENCES catatan_medis(no_catatan) ON DELETE CASCADE,
-    FOREIGN KEY (id_dokter) REFERENCES dokter_hewan(id_dokter)
+    FOREIGN KEY (id_dokter) REFERENCES dokter_hewan(id_dokter),
+    PRIMARY KEY (waktu, no_catatan)
 );
 
