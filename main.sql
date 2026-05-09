@@ -8,4 +8,4 @@ SOURCE adopsi.sql;
 SOURCE pembayaran.sql;
 
 -- Seed data
-SOURCE medis.seed.sql;
+SOURCE medis-seed.sql;
