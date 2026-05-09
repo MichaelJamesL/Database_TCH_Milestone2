@@ -5,3 +5,4 @@ USE petcare;
 SOURCE medis.sql;
 
 -- Seed data
+SOURCE medis.seed.sql;
