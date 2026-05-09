@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS catatan_medis (
     no_catatan INT AUTO_INCREMENT PRIMARY KEY,
-    waktu_pembuatan DATETIME DEFAULT CURRENT_TIMESTAMP,
+    waktu_pembuatan DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     ringkasan_kondisi TEXT NOT NULL
 );
 
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS dokter_hewan (
 
 CREATE TABLE IF NOT EXISTS tindakan_perawatan (
     waktu DATETIME,
-    deskripsi TEXT,
+    deskripsi TEXT NOT NULL,
     biaya DECIMAL(11, 2) NOT NULL,
     no_catatan INT NOT NULL,
     id_dokter INT NOT NULL,
