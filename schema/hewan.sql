@@ -1,4 +1,4 @@
-CREATE TABLE hewan (
+CREATE TABLE IF NOT EXISTS hewan (
     id_hewan INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(100) NOT NULL,
     tanggal_lahir DATE NOT NULL,
@@ -8,17 +8,17 @@ CREATE TABLE hewan (
     no_catatan INT NOT NULL UNIQUE
 );
 
-CREATE TABLE anjing (
+CREATE TABLE IF NOT EXISTS anjing (
     id_hewan INT PRIMARY KEY,
     ras VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE kucing (
+CREATE TABLE IF NOT EXISTS kucing (
     id_hewan INT PRIMARY KEY,
     tipe_tinggal VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE hewan_eksotis (
+CREATE TABLE IF NOT EXISTS hewan_eksotis (
     id_hewan INT PRIMARY KEY,
     jenis VARCHAR(100) NOT NULL
 );

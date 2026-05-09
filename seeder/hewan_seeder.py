@@ -1,7 +1,7 @@
 import random
 from datetime import date, timedelta
 
-OUTPUT_FILE = "hewan-seed.sql"
+OUTPUT_FILE = "seed/hewan_seed.sql"
 
 random.seed(24)
 
@@ -86,18 +86,21 @@ def tulis_hewan(f, id_hewan):
     )
 
 
-with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-    for id_hewan in range(1, 151):
-        tulis_hewan(f, id_hewan)
 
-    for id_hewan in range(1, 51):
-        ras = esc(random.choice(ras_anjing))
-        f.write(f"INSERT INTO anjing (id_hewan, ras) VALUES ({id_hewan}, '{ras}');\n")
+if __name__ == '__main__':
 
-    for id_hewan in range(51, 101):
-        tipe_tinggal = esc(random.choice(tipe_tinggal_kucing))
-        f.write(f"INSERT INTO kucing (id_hewan, tipe_tinggal) VALUES ({id_hewan}, '{tipe_tinggal}');\n")
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        for id_hewan in range(1, 151):
+            tulis_hewan(f, id_hewan)
 
-    for id_hewan in range(101, 151):
-        jenis = esc(random.choice(jenis_eksotis))
-        f.write(f"INSERT INTO hewan_eksotis (id_hewan, jenis) VALUES ({id_hewan}, '{jenis}');\n")
+        for id_hewan in range(1, 51):
+            ras = esc(random.choice(ras_anjing))
+            f.write(f"INSERT INTO anjing (id_hewan, ras) VALUES ({id_hewan}, '{ras}');\n")
+
+        for id_hewan in range(51, 101):
+            tipe_tinggal = esc(random.choice(tipe_tinggal_kucing))
+            f.write(f"INSERT INTO kucing (id_hewan, tipe_tinggal) VALUES ({id_hewan}, '{tipe_tinggal}');\n")
+
+        for id_hewan in range(101, 151):
+            jenis = esc(random.choice(jenis_eksotis))
+            f.write(f"INSERT INTO hewan_eksotis (id_hewan, jenis) VALUES ({id_hewan}, '{jenis}');\n")

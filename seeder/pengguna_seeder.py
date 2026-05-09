@@ -108,40 +108,25 @@ for i, u in enumerate(users, start=1):
             'nomor_telepon': nomor
         })
 
-with open('pengguna.sql', 'w') as f:
 
-    f.write("""CREATE TABLE IF NOT EXISTS pengguna (
-    id_user INT AUTO_INCREMENT PRIMARY KEY,
-    nama VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    jalan VARCHAR(200) NOT NULL,
-    kota VARCHAR(100) NOT NULL,
-    provinsi VARCHAR(100) NOT NULL,
-    negara VARCHAR(100) NOT NULL
-);\n\n""")
+if __name__ == '__main__':
+    with open('seed/pengguna_seed.sql', 'w') as f:
 
-    f.write("""CREATE TABLE IF NOT EXISTS pengguna_telp (
-    id_user INT NOT NULL,
-    nomor_telepon VARCHAR(50) NOT NULL,
-    PRIMARY KEY (id_user, nomor_telepon),
-    FOREIGN KEY (id_user) REFERENCES pengguna(id_user)
-);\n\n""")
+        for u in users:
+            nama = u['nama'].replace("'", "''")
+            jalan = u['jalan'].replace("'", "''")
+            kota = u['kota'].replace("'", "''")
+            provinsi = u['provinsi'].replace("'", "''")
+            f.write(
+                f"INSERT INTO pengguna (nama, email, jalan, kota, provinsi, negara) VALUES ("
+                f"'{nama}', '{u['email']}', '{jalan}', '{kota}', '{provinsi}', 'Indonesia');\n"
+            )
 
-    for u in users:
-        nama = u['nama'].replace("'", "''")
-        jalan = u['jalan'].replace("'", "''")
-        kota = u['kota'].replace("'", "''")
-        provinsi = u['provinsi'].replace("'", "''")
-        f.write(
-            f"INSERT INTO pengguna (nama, email, jalan, kota, provinsi, negara) VALUES ("
-            f"'{nama}', '{u['email']}', '{jalan}', '{kota}', '{provinsi}', 'Indonesia');\n"
-        )
+        for t in telp_rows:
+            nomor = t['nomor_telepon'].replace("'", "''")
+            f.write(
+                f"INSERT INTO pengguna_telp (id_user, nomor_telepon) VALUES "
+                f"({t['id_user']}, '{nomor}');\n"
+            )
 
-    for t in telp_rows:
-        nomor = t['nomor_telepon'].replace("'", "''")
-        f.write(
-            f"INSERT INTO pengguna_telp (id_user, nomor_telepon) VALUES "
-            f"({t['id_user']}, '{nomor}');\n"
-        )
-
-print(f"Selesai: {len(users)} pengguna, {len(telp_rows)} nomor telepon")
+    print(f"Selesai: {len(users)} pengguna, {len(telp_rows)} nomor telepon")

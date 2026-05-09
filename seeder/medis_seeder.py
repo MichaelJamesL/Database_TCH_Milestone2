@@ -4,7 +4,7 @@ from faker import Faker
 
 fake = Faker("id_ID")
 
-OUTPUT_FILE = "medis-seed.sql"
+OUTPUT_FILE = "seed/medis_seed.sql"
 
 def esc(s: str) -> str:
     return s.replace("'", "''").replace("\n", " ").strip()
@@ -60,14 +60,16 @@ def seed_tindakan_perawatan(f, jumlah: int, jumlah_catatan: int, jumlah_dokter: 
 
 if __name__ == "__main__":
     N_DOKTER = 30
-    N_TINDAKAN = 30
+    N_TINDAKAN = 100
     N_CATATAN = (N_DOKTER + N_TINDAKAN) * 50
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write("-- dokter_hewan\n")
         seed_dokter_hewan(f, N_DOKTER)
+
         f.write("\n-- catatan_medis\n")
         seed_catatan_medis(f, N_CATATAN)
+
         f.write("\n-- tindakan_perawatan\n")
         seed_tindakan_perawatan(f, N_TINDAKAN, N_CATATAN, N_DOKTER)
 

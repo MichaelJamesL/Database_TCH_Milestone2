@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS  shelter (
+    id_shelter INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    kota VARCHAR(100) NOT NULL,
+    negara VARCHAR(100) NOT NULL
+);
